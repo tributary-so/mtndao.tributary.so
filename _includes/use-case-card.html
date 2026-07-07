@@ -1,0 +1,26 @@
+{% comment %}
+  Renders a single use-case card. Expects: uc (a use-case doc)
+{% endcomment %}
+{%- assign status_text = uc.status | remove_first: '🔍 ' | remove_first: '💭 ' | remove_first: '✅ ' | strip -%}
+{%- assign status_cls = 'research' -%}
+{%- if uc.status contains 'ideation' -%}{%- assign status_cls = 'ideation' -%}
+{%- elsif uc.status contains 'shipped' -%}{%- assign status_cls = 'shipped' -%}{%- endif -%}
+
+<a class="uc-card" href="{{ uc.url | relative_url }}">
+  <div class="uc-card__head">
+    <span class="badge badge--{{ status_cls }}">{{ uc.status }}</span>
+    <span class="uc-card__pv mono">{{ uc.protocol-version }}</span>
+  </div>
+
+  <h3 class="uc-card__title">{{ uc.name }}</h3>
+  <p class="uc-card__summary">{{ uc.summary }}</p>
+
+  <div class="uc-card__foot">
+    <div class="uc-card__models">
+      {% for m in uc.tributary_models -%}
+        <span class="pill{% if forloop.first %} pill--solid{% endif %}">{{ m }}</span>
+      {%- endfor %}
+    </div>
+    <span class="uc-card__more">Read →</span>
+  </div>
+</a>

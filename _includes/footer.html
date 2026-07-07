@@ -1,0 +1,43 @@
+<footer class="footer" id="about">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="{{ '/assets/img/tributary.svg' | relative_url }}" alt="Tributary" height="36">
+        <img src="{{ '/assets/img/mtndao.svg' | relative_url }}" alt="mtnDAO" height="36">
+        <p class="label">{{ site.event }} · {{ site.event_dates }}</p>
+        <p style="font-size:.875rem;color:{{ '#404040' }};max-width:32ch;">
+          A Tributary publication. Special edition catalog of what becomes
+          possible when money moves on its own.
+        </p>
+      </div>
+      <div>
+        <p class="footer__title">Catalog</p>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}#catalog">All use-cases</a></li>
+          <li><a href="{{ '/' | relative_url }}#cat-ai-automation">AI &amp; Automation</a></li>
+          <li><a href="{{ '/' | relative_url }}#cat-defi-trading">DeFi &amp; Trading</a></li>
+          <li><a href="{{ '/' | relative_url }}#cat-commerce-payments">Commerce</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Protocol</p>
+        <ul>
+          <li><a href="https://docs.tributary.so" rel="noopener">Documentation</a></li>
+          <li><a href="https://github.com/tributary-so" rel="noopener">GitHub</a></li>
+          <li><a href="https://tributary.so" rel="noopener">tributary.so</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Event</p>
+        <ul>
+          <li><a href="https://mtndao.com" rel="noopener">mtnDAO</a></li>
+          <li><a href="https://tributary.so" rel="noopener">Tributary</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__colophon">
+      <span>{{ site.edition }} · {{ site.event }} · {{ site.event_dates }}</span>
+      <span>Printed on Solana</span>
+    </div>
+  </div>
+</footer>

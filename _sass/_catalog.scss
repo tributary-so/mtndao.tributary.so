@@ -1,0 +1,260 @@
+@use "tokens" as *;
+
+// ============================================================
+//  Catalog — use-case grid, cards, category sections, badges
+// ============================================================
+
+.catalog {
+  padding: 2rem 0 1rem;
+}
+
+// --- Category section: collapsed-border grid of cards ---
+.cat-section {
+  margin-bottom: 3rem;
+}
+
+.cardgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-left: $rule solid $ink;
+  border-top: $rule solid $ink;
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// --- Use-case card (newspaper clipping) ---
+.uc-card {
+  display: flex;
+  flex-direction: column;
+  border-right: $rule solid $ink;
+  border-bottom: $rule solid $ink;
+  padding: 1.25rem;
+  background: $paper;
+  text-decoration: none;
+  color: $ink;
+  transition:
+    background $snap,
+    transform $snap,
+    box-shadow $snap;
+  min-height: 200px;
+
+  &:hover {
+    background: $neutral-100;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 $ink;
+    color: $ink;
+    .uc-card__title {
+      color: $ink;
+    }
+    .uc-card__more {
+      color: $accent;
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__status {
+    font-family: $font-mono;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $neutral-600;
+    white-space: nowrap;
+  }
+
+  &__pv {
+    font-family: $font-mono;
+    font-size: 0.625rem;
+    letter-spacing: 0.05em;
+    color: $neutral-500;
+    border: $rule solid $ink;
+    padding: 0.1rem 0.35rem;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  &__summary {
+    font-family: $font-body;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $neutral-700;
+    margin: 0;
+    flex: 1;
+    // clamp to keep cards even
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: $rule solid $divider;
+  }
+
+  &__models {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  &__more {
+    font-family: $font-mono;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $neutral-600;
+    transition: color $snap;
+  }
+}
+
+// --- Model pill ---
+.pill {
+  font-family: $font-mono;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.4rem;
+  border: $rule solid $ink;
+  background: $paper;
+  &--solid {
+    background: $ink;
+    color: $paper;
+  }
+}
+
+// --- Status badge (detail page + featured) ---
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.5rem;
+  border: $rule solid $ink;
+  &--research {
+    background: $paper;
+    color: $ink;
+  }
+  &--ideation {
+    background: $ink;
+    color: $paper;
+  }
+  &--shipped {
+    background: $accent;
+    color: $paper;
+    border-color: $accent;
+  }
+}
+
+// --- Hero strip: stats / count ---
+.cat-lead {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: $rule solid $ink;
+  margin-bottom: 2rem;
+  @media (max-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &__cell {
+    padding: 1rem;
+    border-right: $rule solid $ink;
+    &:last-child {
+      border-right: 0;
+    }
+    @media (max-width: $bp-md) {
+      &:nth-child(odd) {
+        border-right: $rule solid $ink;
+      }
+      &:nth-child(2) {
+        border-right: 0;
+      }
+      &:nth-child(1),
+      &:nth-child(2) {
+        border-bottom: $rule solid $ink;
+      }
+    }
+  }
+  &__num {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    line-height: 1;
+  }
+  &__label {
+    font-family: $font-mono;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $neutral-600;
+    margin-top: 0.3rem;
+  }
+}
+
+// --- Category jump nav ---
+.catnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: $rule solid $ink;
+  margin-bottom: 2.5rem;
+  &__item {
+    flex: 1 1 auto;
+    padding: 0.6rem 0.9rem;
+    border-right: $rule solid $ink;
+    font-family: $font-mono;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    color: $ink;
+    transition:
+      background $snap,
+      color $snap;
+    &:last-child {
+      border-right: 0;
+    }
+    &:hover {
+      background: $ink;
+      color: $paper;
+    }
+    .emoji {
+      margin-right: 0.3rem;
+    }
+  }
+  @media (max-width: $bp-md) {
+    &__item {
+      flex: 1 1 50%;
+    }
+    &__item:nth-child(odd) {
+      border-right: $rule solid $ink;
+    }
+    &__item:nth-child(even) {
+      border-right: 0;
+    }
+  }
+}

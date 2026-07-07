@@ -1,0 +1,196 @@
+@use "tokens" as *;
+
+// ============================================================
+//  Use-case detail page — long-form article, newsprint column
+// ============================================================
+
+.article {
+  padding: 2rem 0 4rem;
+  @media (max-width: $bp-md) {
+    padding: 1.5rem 0 3rem;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-family: $font-mono;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $neutral-600;
+    margin-bottom: 1rem;
+    a {
+      color: $neutral-700;
+      &:hover {
+        color: $accent;
+      }
+    }
+    .sep {
+      color: $neutral-400;
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: clamp(2.25rem, 7vw, 4.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+  }
+
+  &__lede {
+    font-family: $font-body;
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    line-height: 1.5;
+    color: $neutral-700;
+    font-style: italic;
+    border-left: $rule-heavy solid $accent;
+    padding-left: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  // body content rendered from markdown
+  &__body {
+    max-width: 720px;
+    margin: 0 auto;
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: $font-display;
+      scroll-margin-top: 80px;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+      margin-top: 2.5rem;
+    }
+    h2 {
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      margin-top: 2.25rem;
+      border-top: $rule solid $ink;
+      padding-top: 1rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.75rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+    }
+
+    // drop cap on first paragraph of the article body
+    > p:first-of-type::first-letter {
+      font-family: $font-display;
+      font-weight: 900;
+      font-size: 4.5rem;
+      line-height: 0.8;
+      float: left;
+      padding: 0.3rem 0.6rem 0 0;
+      color: $ink;
+    }
+
+    ul,
+    ol {
+      padding-left: 1.25rem;
+      li {
+        margin-bottom: 0.4rem;
+      }
+    }
+
+    blockquote {
+      margin: 1.5rem 0;
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      border-left: $rule-heavy solid $ink;
+      font-style: italic;
+      color: $neutral-700;
+    }
+
+    // tables — market research etc.
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.875rem;
+      th,
+      td {
+        border: $rule solid $ink;
+        padding: 0.5rem 0.65rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: $ink;
+        color: $paper;
+        font-family: $font-mono;
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 500;
+      }
+      tr:nth-child(even) td {
+        background: $neutral-100;
+      }
+    }
+
+    code {
+      font-family: $font-mono;
+      font-size: 0.85em;
+      background: $neutral-100;
+      padding: 0.1em 0.3em;
+      border: $rule solid $divider;
+    }
+    pre {
+      font-family: $font-mono;
+      background: $ink;
+      color: $paper;
+      padding: 1rem;
+      overflow-x: auto;
+      border: $rule solid $ink;
+      code {
+        background: none;
+        border: 0;
+        color: inherit;
+        padding: 0;
+      }
+    }
+
+    hr {
+      border: 0;
+      border-top: $rule solid $ink;
+      margin: 2rem 0;
+    }
+  }
+
+  &__models {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    .label {
+      margin-right: 0.25rem;
+    }
+  }
+}
+
+// back link
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $neutral-600;
+  &:hover {
+    color: $accent;
+  }
+}

@@ -1,0 +1,62 @@
+---
+layout: default
+---
+{% assign ucs = site.use-cases %}
+{% assign order = "ai-automation,defi-trading,commerce-payments,social-community,infrastructure-tools,gaming-entertainment,creator-economy,psychology-emotion" | split: "," %}
+
+{% include masthead.html %}
+
+<section class="catalog container" id="catalog">
+  {%- comment -%} Lead stats strip {%- endcomment -%}
+  <div class="cat-lead">
+    {% assign shipped = ucs | where_exp: "u", "u.status contains 'shipped'" | size %}
+    {% assign research = ucs | where_exp: "u", "u.status contains 'research'" | size %}
+    {% assign ideation = ucs | where_exp: "u", "u.status contains 'ideation'" | size %}
+    <div class="cat-lead__cell">
+      <div class="cat-lead__num">{{ ucs.size }}</div>
+      <div class="cat-lead__label">Use-Cases</div>
+    </div>
+    <div class="cat-lead__cell">
+      <div class="cat-lead__num">{{ order.size }}</div>
+      <div class="cat-lead__label">Categories</div>
+    </div>
+    <div class="cat-lead__cell">
+      <div class="cat-lead__num">{{ research }}</div>
+      <div class="cat-lead__label">In Research</div>
+    </div>
+    <div class="cat-lead__cell">
+      <div class="cat-lead__num">{{ ideation }}</div>
+      <div class="cat-lead__label">In Ideation</div>
+    </div>
+  </div>
+
+  {%- comment -%} Category jump nav {%- endcomment -%}
+  <nav class="catnav" aria-label="Categories">
+    {% for slug in order -%}
+      {% assign grp = ucs | where: "category_slug", slug %}
+      {% if grp.size > 0 -%}
+        <a class="catnav__item" href="#cat-{{ slug }}">{{ grp.first.category }} <span style="opacity:.5">({{ grp.size }})</span></a>
+      {%- endif %}
+    {%- endfor %}
+  </nav>
+
+  {%- comment -%} Sectioned catalog {%- endcomment -%}
+  {% for slug in order -%}
+    {% assign grp = ucs | where: "category_slug", slug | sort: "name" %}
+    {% if grp.size > 0 -%}
+      <section class="cat-section" id="cat-{{ slug }}">
+        <div class="section-head">
+          <h2 class="section-head__title">{{ grp.first.category }}</h2>
+          <span class="section-head__count">{{ grp.size }} use-case{% if grp.size != 1 %}s{% endif %}</span>
+        </div>
+        <div class="cardgrid">
+          {% for uc in grp -%}
+            {% include use-case-card.html uc=uc %}
+          {%- endfor %}
+        </div>
+      </section>
+    {%- endif %}
+  {% endfor %}
+
+  <div class="ornament">✧ ✧ ✧</div>
+</section>

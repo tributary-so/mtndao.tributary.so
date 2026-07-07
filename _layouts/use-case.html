@@ -1,0 +1,44 @@
+---
+layout: default
+---
+{% assign uc = page %}
+{%- assign status_cls = 'research' -%}
+{%- if uc.status contains 'ideation' -%}{%- assign status_cls = 'ideation' -%}
+{%- elsif uc.status contains 'shipped' -%}{%- assign status_cls = 'shipped' -%}{%- endif -%}
+
+<article class="article container">
+  <a class="back-link" href="{{ '/' | relative_url }}#cat-{{ uc.category_slug }}">← Back to {{ uc.category }}</a>
+
+  <div class="article__meta">
+    <span class="badge badge--{{ status_cls }}">{{ uc.status }}</span>
+    <span class="sep">/</span>
+    <span>{{ uc.category }}</span>
+    <span class="sep">/</span>
+    <span class="mono">{{ uc.protocol-version }}</span>
+    <span class="sep">/</span>
+    <span>Fig. {{ uc.url | remove: '/use-cases/' | truncate: 8, '' }}</span>
+  </div>
+
+  <h1 class="article__title">{{ uc.name }}</h1>
+
+  {% if uc.summary and uc.summary != '' -%}
+    <p class="article__lede">{{ uc.summary }}</p>
+  {%- endif %}
+
+  <div class="article__models">
+    <span class="label">Tributary Models</span>
+    {% for m in uc.tributary_models -%}
+      <span class="pill{% if forloop.first %} pill--solid{% endif %}">{{ m }}</span>
+    {%- endfor %}
+  </div>
+
+  <div class="ornament">✧</div>
+
+  <div class="article__body">
+    {{ content }}
+  </div>
+
+  <div class="ornament">✧ ✧ ✧</div>
+
+  <a class="back-link" href="{{ '/' | relative_url }}#cat-{{ uc.category_slug }}">← Back to {{ uc.category }}</a>
+</article>
