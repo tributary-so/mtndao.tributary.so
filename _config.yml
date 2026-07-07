@@ -46,10 +46,10 @@ exclude:
   - DESIGN.md
   - use-cases
 
-sass:
-  style: compressed
-  sass_dir: _sass
-  verbose: true
+# sass:
+#   style: compressed
+#   sass_dir: _sass
+#   verbose: true
 
 # Liquid perf
 liquid:
