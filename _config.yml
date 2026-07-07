@@ -49,6 +49,7 @@ exclude:
 sass:
   style: compressed
   sass_dir: _sass
+  verbose: true
 
 # Liquid perf
 liquid:
