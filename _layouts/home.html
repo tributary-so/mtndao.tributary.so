@@ -6,40 +6,17 @@ layout: default
 
 {% include masthead.html %}
 
+{%- comment -%} Category jump nav {%- endcomment -%}
+<nav class="catnav" aria-label="Categories">
+  {% for slug in order -%}
+    {% assign grp = ucs | where: "category_slug", slug %}
+    {% if grp.size > 0 -%}
+      <a class="catnav__item" href="#cat-{{ slug }}">{{ grp.first.category }} <span style="opacity:.5">({{ grp.size }})</span></a>
+    {%- endif %}
+  {%- endfor %}
+</nav>
+
 <section class="catalog container" id="catalog">
-  {%- comment -%} Lead stats strip {%- endcomment -%}
-  <div class="cat-lead">
-    {% assign shipped = ucs | where_exp: "u", "u.status contains 'shipped'" | size %}
-    {% assign research = ucs | where_exp: "u", "u.status contains 'research'" | size %}
-    {% assign ideation = ucs | where_exp: "u", "u.status contains 'ideation'" | size %}
-    <div class="cat-lead__cell">
-      <div class="cat-lead__num">{{ ucs.size }}</div>
-      <div class="cat-lead__label">Use-Cases</div>
-    </div>
-    <div class="cat-lead__cell">
-      <div class="cat-lead__num">{{ order.size }}</div>
-      <div class="cat-lead__label">Categories</div>
-    </div>
-    <div class="cat-lead__cell">
-      <div class="cat-lead__num">{{ research }}</div>
-      <div class="cat-lead__label">In Research</div>
-    </div>
-    <div class="cat-lead__cell">
-      <div class="cat-lead__num">{{ ideation }}</div>
-      <div class="cat-lead__label">In Ideation</div>
-    </div>
-  </div>
-
-  {%- comment -%} Category jump nav {%- endcomment -%}
-  <nav class="catnav" aria-label="Categories">
-    {% for slug in order -%}
-      {% assign grp = ucs | where: "category_slug", slug %}
-      {% if grp.size > 0 -%}
-        <a class="catnav__item" href="#cat-{{ slug }}">{{ grp.first.category }} <span style="opacity:.5">({{ grp.size }})</span></a>
-      {%- endif %}
-    {%- endfor %}
-  </nav>
-
   {%- comment -%} Sectioned catalog {%- endcomment -%}
   {% for slug in order -%}
     {% assign grp = ucs | where: "category_slug", slug | sort: "name" %}

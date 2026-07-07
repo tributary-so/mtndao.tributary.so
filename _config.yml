@@ -27,9 +27,9 @@ defaults:
       layout: default
 
 # Edition metadata (newspaper flavor)
-edition: "Vol. I"
-event: "mtnDAO Edition"
-event_dates: "Jul 2026"
+edition: "Vol. X"
+event: "mtnDAO"
+event_dates: "August 2026"
 
 # Plugins
 plugins:

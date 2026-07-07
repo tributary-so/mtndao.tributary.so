@@ -221,15 +221,13 @@
   flex-wrap: wrap;
   gap: 0;
   border: $rule solid $ink;
-  margin-bottom: 2.5rem;
   &__item {
     flex: 1 1 auto;
-    padding: 0.6rem 0.9rem;
+    padding: 0.6rem 0.4rem;
     border-right: $rule solid $ink;
     font-family: $font-mono;
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
     text-align: center;
     color: $ink;
     transition:

@@ -69,7 +69,6 @@
 
 // --- Front-page nameplate (masthead) ---
 .masthead {
-  border-bottom: $rule-heavy solid $ink;
   text-align: center;
   padding: 2.5rem 0 1.75rem;
   @media (max-width: $bp-md) {
@@ -124,7 +123,7 @@
     font-style: italic;
     font-size: clamp(0.95rem, 2vw, 1.15rem);
     color: $neutral-700;
-    margin-top: 0.5rem;
+    margin-top: 2ex;
   }
 }
 
