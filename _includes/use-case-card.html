@@ -7,10 +7,10 @@
 {%- elsif uc.status contains 'shipped' -%}{%- assign status_cls = 'shipped' -%}{%- endif -%}
 
 <a class="uc-card" href="{{ uc.url | relative_url }}">
-  <div class="uc-card__head">
-    <span class="badge badge--{{ status_cls }}">{{ uc.status }}</span>
-    <span class="uc-card__pv mono">{{ uc.protocol-version }}</span>
-  </div>
+  <!-- <div class="uc-card__head"> -->
+  <!--   <span class="badge badge--{{ status_cls }}">{{ uc.status }}</span> -->
+  <!--   <span class="uc-card__pv mono">{{ uc.protocol-version }}</span> -->
+  <!-- </div> -->
 
   <h3 class="uc-card__title">{{ uc.name }}</h3>
   <p class="uc-card__summary">{{ uc.summary }}</p>
